@@ -1,0 +1,28 @@
+=== Kubernetes Context ===
+kind-cloud-k8s-security
+
+=== Deployment ===
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE   CONTAINERS   IMAGES                            SELECTOR
+cloud-k8s-security-app   1/1     1            1           15m   app          cloud-k8s-security-lab:hardened   app=cloud-k8s-security-app
+
+=== ReplicaSet ===
+NAME                               DESIRED   CURRENT   READY   AGE   CONTAINERS   IMAGES                            SELECTOR
+cloud-k8s-security-app-779846487   1         1         1       15m   app          cloud-k8s-security-lab:hardened   app=cloud-k8s-security-app,pod-template-hash=779846487
+
+=== Pod ===
+NAME                                     READY   STATUS    RESTARTS   AGE    IP           NODE                               NOMINATED NODE   READINESS GATES
+cloud-k8s-security-app-779846487-kbh5k   1/1     Running   0          9m1s   10.244.0.6   cloud-k8s-security-control-plane   <none>           <none>
+
+=== Runtime Identity ===
+uid=999(appuser) gid=999(appgroup) groups=999(appgroup)
+
+=== Service ===
+NAME                         TYPE        CLUSTER-IP    EXTERNAL-IP   PORT(S)    AGE   SELECTOR
+cloud-k8s-security-service   ClusterIP   10.96.7.146   <none>        8080/TCP   12m   app=cloud-k8s-security-app
+
+=== EndpointSlice ===
+NAME                               ADDRESSTYPE   PORTS   ENDPOINTS    AGE
+cloud-k8s-security-service-gxq68   IPv4          8080    10.244.0.6   12m
+
+=== Application Health From Pod ===
+{"status": "healthy"}

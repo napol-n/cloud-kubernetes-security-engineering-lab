@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-k8s-security-app
+  labels:
+    app: cloud-k8s-security-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-k8s-security-app
+  template:
+    metadata:
+      labels:
+        app: cloud-k8s-security-app
+    spec:
+      containers:
+        - name: app
+          image: cloud-k8s-security-lab:hardened
+          imagePullPolicy: IfNotPresent
+          ports:
+            - containerPort: 8080

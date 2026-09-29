@@ -1,0 +1,63 @@
+=== Self-Healing Test ===
+
+Test:
+The running application Pod managed by the Deployment was intentionally deleted.
+
+Expected:
+The Deployment/ReplicaSet reconciliation loop should restore the desired replica count of 1.
+
+=== Before Pod Deletion ===
+
+Pod:
+cloud-k8s-security-app-779846487-z7k2t
+
+Pod IP:
+10.244.0.5
+
+State:
+1/1 Running
+
+Service Endpoint:
+10.244.0.5:8080
+
+Application:
+HTTP 200 from /health
+
+=== After Pod Deletion ===
+
+Replacement Pod:
+cloud-k8s-security-app-779846487-kbh5k
+
+Replacement Pod IP:
+10.244.0.6
+
+State:
+1/1 Running
+
+Restarts:
+0
+
+Deployment:
+READY 1/1
+AVAILABLE 1
+
+ReplicaSet:
+DESIRED 1
+CURRENT 1
+READY 1
+
+Updated Service Endpoint:
+10.244.0.6:8080
+
+Application Retest:
+HTTP 200 from /health
+
+=== Result ===
+
+PASS
+
+The original Pod was deleted and a new Pod with a different name and IP address was created automatically.
+
+The Service EndpointSlice updated from 10.244.0.5 to 10.244.0.6.
+
+Application functionality was successfully restored through the Service after reconciliation.

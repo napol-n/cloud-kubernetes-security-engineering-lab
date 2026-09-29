@@ -1,0 +1,34 @@
+=== Context ===
+kind-cloud-k8s-security
+
+=== Cluster Info ===
+Kubernetes control plane is running at https://127.0.0.1:53438
+CoreDNS is running at https://127.0.0.1:53438/api/v1/namespaces/kube-system/services/kube-dns:dns/proxy
+
+To further debug and diagnose cluster problems, use 'kubectl cluster-info dump'.
+
+=== Nodes ===
+NAME                               STATUS   ROLES           AGE     VERSION   INTERNAL-IP   EXTERNAL-IP   OS-IMAGE                       KERNEL-VERSION            CONTAINER-RUNTIME
+cloud-k8s-security-control-plane   Ready    control-plane   2m52s   v1.37.0   172.20.0.2    <none>        Debian GNU/Linux 13 (trixie)   7.0.12-linuxkit (arm64)   containerd://2.3.4
+
+=== System Pods ===
+NAME                                                       READY   STATUS    RESTARTS   AGE     IP           NODE                               NOMINATED NODE   READINESS GATES
+coredns-559f6c778d-7fjcv                                   1/1     Running   0          2m43s   10.244.0.3   cloud-k8s-security-control-plane   <none>           <none>
+coredns-559f6c778d-vhqgc                                   1/1     Running   0          2m43s   10.244.0.2   cloud-k8s-security-control-plane   <none>           <none>
+etcd-cloud-k8s-security-control-plane                      1/1     Running   0          2m50s   172.20.0.2   cloud-k8s-security-control-plane   <none>           <none>
+kindnet-dvf4z                                              1/1     Running   0          2m43s   172.20.0.2   cloud-k8s-security-control-plane   <none>           <none>
+kube-apiserver-cloud-k8s-security-control-plane            1/1     Running   0          2m50s   172.20.0.2   cloud-k8s-security-control-plane   <none>           <none>
+kube-controller-manager-cloud-k8s-security-control-plane   1/1     Running   0          2m50s   172.20.0.2   cloud-k8s-security-control-plane   <none>           <none>
+kube-proxy-85dgx                                           1/1     Running   0          2m43s   172.20.0.2   cloud-k8s-security-control-plane   <none>           <none>
+kube-scheduler-cloud-k8s-security-control-plane            1/1     Running   0          2m50s   172.20.0.2   cloud-k8s-security-control-plane   <none>           <none>
+
+=== Namespaces ===
+NAME                 STATUS   AGE
+default              Active   2m52s
+kube-node-lease      Active   2m52s
+kube-public          Active   2m52s
+kube-system          Active   2m52s
+local-path-storage   Active   2m48s
+
+=== kind Clusters ===
+cloud-k8s-security

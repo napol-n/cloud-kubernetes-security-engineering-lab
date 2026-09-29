@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: cloud-k8s-security-service
+spec:
+  type: ClusterIP
+  selector:
+    app: cloud-k8s-security-app
+  ports:
+    - name: http
+      protocol: TCP
+      port: 8080
+      targetPort: 8080
