@@ -24,8 +24,9 @@ Apply Hardening
 Retest Security Controls
         ↓
 Validate Application Health
+```
 
-Assessment Summary
+## Assessment Summary
 Seven Kubernetes workload hardening gaps were identified:
 1. Non-root execution was not explicitly enforced by Kubernetes.
 2. The root filesystem was not configured read-only.
@@ -35,7 +36,7 @@ Seven Kubernetes workload hardening gaps were identified:
 6. CPU and memory resource controls were not defined.
 7. An unnecessary ServiceAccount token was mounted into the application Pod.
 The baseline application already executed as UID/GID 999 and had no effective Linux capabilities, but these properties were partly dependent on image/runtime defaults rather than explicit Kubernetes workload controls.
-Remediation
+## Remediation
 The hardened workload implements:
 - runAsNonRoot: true
 - explicit UID/GID 999
@@ -46,7 +47,7 @@ The hardened workload implements:
 - CPU and memory requests/limits
 - automountServiceAccountToken: false
 - readiness and liveness probes
-Retest
+## Retest
 Runtime verification confirmed:
 - non-root identity retained
 - all capability sets reduced to zero
@@ -60,7 +61,7 @@ Application functionality remained healthy:
 Ready=true
 Restarts=0
 
-Evidence
+## Evidence
 Baseline evidence:
 - evidence/baseline/deployment-effective.yaml
 - evidence/baseline/pod-effective.yaml
@@ -72,6 +73,6 @@ Assessment:
 - notes/security-assessment.md
 Hardened manifest:
 - manifests/deployment-hardened.yaml
-Result
+## Result
 7 findings remediated — 7 retests passed.
 The workload moved from relying partly on container-image defaults to explicit Kubernetes workload-level security enforcement.

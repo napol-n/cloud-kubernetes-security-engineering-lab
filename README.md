@@ -19,7 +19,7 @@ Hands-on security engineering project focused on container security, Kubernetes 
 |---|---|---|
 | 01 | Container Security Baseline | ✅ Completed |
 | 02 | Kubernetes Deployment | ✅ Completed |
-| 03 | Kubernetes Security Assessment | Planned |
+| 03 | Kubernetes Security Assessment | ✅ Completed |
 | 04 | Terraform / IaC Security | Planned |
 | 05 | Container Vulnerability Management | Planned |
 | 06 | Secure CI/CD Pipeline | Planned |
