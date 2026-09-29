@@ -26,8 +26,9 @@ Harden
 Retest
   ↓
 Compare
+```
 
-Baseline Assessment
+## Baseline Assessment
 The initial container demonstrated five hardening weaknesses:
 1. Application process running as root
 2. Writable root filesystem
