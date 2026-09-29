@@ -1,0 +1,42 @@
+=== Container Identity ===
+Container=/cloud-k8s-hardened ContainerImage=sha256:8195ff9d555e89e05e297117d3e6c7f5913d0c71c21c578ef0f452875f114a7b ConfigImage=cloud-k8s-security-lab:hardened
+
+=== Functional Health ===
+HTTP/1.0 200 OK
+Server: BaseHTTP/0.6 Python/3.12.14
+Date: Tue, 29 Sep 2026 15:35:50 GMT
+Content-Type: application/json
+Content-Length: 21
+
+{"status": "healthy"}
+=== Runtime User ===
+uid=999(appuser) gid=999(appgroup) groups=999(appgroup)
+
+=== Security Configuration ===
+User=appuser ReadonlyRootfs=true Privileged=false
+
+=== Resource Controls ===
+Memory=134217728 NanoCPUs=500000000 PidsLimit=100
+
+=== Healthcheck ===
+Healthcheck={"Test":["CMD-SHELL","python -c \"import urllib.request; urllib.request.urlopen('http://127.0.0.1:8080/health', timeout=2)\" || exit 1"],"Interval":30000000000,"Timeout":3000000000,"StartPeriod":5000000000,"Retries":3}
+
+=== Linux Capabilities ===
+CapInh:	0000000000000000
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	0000000000000000
+CapAmb:	0000000000000000
+
+=== Security Options ===
+SecurityOpt=["no-new-privileges:true"]
+
+=== Root Filesystem Write Retest ===
+sh: 1: cannot create /app/write-test: Read-only file system
+RESULT=PASS: write blocked
+
+=== Explicit /tmp Write Test ===
+tmp-write-ok
+
+=== Runtime Status ===
+Status=running Health=healthy

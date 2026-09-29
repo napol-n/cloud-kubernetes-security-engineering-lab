@@ -1,0 +1,27 @@
+=== Container Identity ===
+Container=/cloud-k8s-baseline ContainerImage=sha256:fe4948640031c2de0dc9308fccdca8039b832a0a9b83443ccd28713de3fc03f5 ConfigImage=cloud-k8s-security-lab:baseline
+
+=== Runtime User ===
+uid=0(root) gid=0(root) groups=0(root)
+
+=== Security Configuration ===
+User= ReadonlyRootfs=false Privileged=false
+
+=== Resource Controls ===
+Memory=0 NanoCPUs=0 PidsLimit=<no value>
+
+=== Healthcheck ===
+Healthcheck=null
+
+=== Linux Capabilities ===
+CapInh:	0000000000000000
+CapPrm:	00000000a80425fb
+CapEff:	00000000a80425fb
+CapBnd:	00000000a80425fb
+CapAmb:	0000000000000000
+
+=== Filesystem Write Test ===
+baseline-write-test
+
+=== Current Tagged Image ===
+CurrentTaggedImage=sha256:2933112070f58dd5a3e31a402f5eeab2901a2e0a7c725444a0de771243a26d40
