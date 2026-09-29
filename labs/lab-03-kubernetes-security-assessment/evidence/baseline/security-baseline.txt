@@ -1,0 +1,38 @@
+=== Target ===
+Context=kind-cloud-k8s-security
+Pod=cloud-k8s-security-app-779846487-kbh5k
+
+=== Runtime Identity ===
+uid=999(appuser) gid=999(appgroup) groups=999(appgroup)
+
+=== Kubernetes Security Configuration ===
+Privileged=
+AllowPrivilegeEscalation=
+RunAsNonRoot=
+RunAsUser=
+ReadOnlyRootFilesystem=
+PodSeccomp=
+
+=== Runtime Kernel Security State ===
+CapInh:	0000000000000000
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	00000000a80425fb
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	0
+Seccomp_filters:	0
+
+=== Resource Configuration ===
+Resources={}
+
+=== Service Account ===
+ServiceAccount=default
+
+=== Service Account Token Presence ===
+ServiceAccountToken=present
+
+=== Filesystem Permissions ===
+drwxr-xr-x 1 root root 4096 Sep 29 16:33 /
+drwxr-xr-x 1 root root 4096 Sep 29 07:56 /app
+drwxrwxrwt 1 root root 4096 Sep 29 16:53 /tmp

@@ -1,0 +1,61 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloud-k8s-security-app
+  labels:
+    app: cloud-k8s-security-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloud-k8s-security-app
+  template:
+    metadata:
+      labels:
+        app: cloud-k8s-security-app
+    spec:
+      automountServiceAccountToken: false
+
+      securityContext:
+        seccompProfile:
+          type: RuntimeDefault
+
+      containers:
+        - name: app
+          image: cloud-k8s-security-lab:hardened
+          imagePullPolicy: IfNotPresent
+
+          ports:
+            - containerPort: 8080
+
+          securityContext:
+            runAsNonRoot: true
+            runAsUser: 999
+            runAsGroup: 999
+            allowPrivilegeEscalation: false
+            readOnlyRootFilesystem: true
+            capabilities:
+              drop:
+                - ALL
+
+          resources:
+            requests:
+              cpu: 50m
+              memory: 32Mi
+            limits:
+              cpu: 500m
+              memory: 128Mi
+
+          readinessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 2
+            periodSeconds: 5
+
+          livenessProbe:
+            httpGet:
+              path: /health
+              port: 8080
+            initialDelaySeconds: 5
+            periodSeconds: 10

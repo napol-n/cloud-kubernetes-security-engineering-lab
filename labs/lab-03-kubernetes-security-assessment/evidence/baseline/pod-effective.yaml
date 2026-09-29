@@ -1,0 +1,136 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  creationTimestamp: "2026-09-29T16:33:34Z"
+  generateName: cloud-k8s-security-app-779846487-
+  generation: 1
+  labels:
+    app: cloud-k8s-security-app
+    pod-template-hash: "779846487"
+  name: cloud-k8s-security-app-779846487-kbh5k
+  namespace: default
+  ownerReferences:
+  - apiVersion: apps/v1
+    blockOwnerDeletion: true
+    controller: true
+    kind: ReplicaSet
+    name: cloud-k8s-security-app-779846487
+    uid: 161a180a-72e2-4282-a579-e7858a7cd94a
+  resourceVersion: "1738"
+  uid: a2085afe-fe88-4098-bb35-a7d6b08894e8
+spec:
+  containers:
+  - image: cloud-k8s-security-lab:hardened
+    imagePullPolicy: IfNotPresent
+    name: app
+    ports:
+    - containerPort: 8080
+      protocol: TCP
+    resources: {}
+    terminationMessagePath: /dev/termination-log
+    terminationMessagePolicy: File
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-92ddp
+      readOnly: true
+  dnsPolicy: ClusterFirst
+  enableServiceLinks: true
+  nodeName: cloud-k8s-security-control-plane
+  preemptionPolicy: PreemptLowerPriority
+  priority: 0
+  restartPolicy: Always
+  schedulerName: default-scheduler
+  securityContext: {}
+  serviceAccount: default
+  serviceAccountName: default
+  terminationGracePeriodSeconds: 30
+  tolerations:
+  - effect: NoExecute
+    key: node.kubernetes.io/not-ready
+    operator: Exists
+    tolerationSeconds: 300
+  - effect: NoExecute
+    key: node.kubernetes.io/unreachable
+    operator: Exists
+    tolerationSeconds: 300
+  volumes:
+  - name: kube-api-access-92ddp
+    projected:
+      defaultMode: 420
+      sources:
+      - serviceAccountToken:
+          expirationSeconds: 3607
+          path: token
+      - configMap:
+          items:
+          - key: ca.crt
+            path: ca.crt
+          name: kube-root-ca.crt
+      - downwardAPI:
+          items:
+          - fieldRef:
+              apiVersion: v1
+              fieldPath: metadata.namespace
+            path: namespace
+status:
+  conditions:
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-29T16:33:35Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodReadyToStartContainers
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-29T16:33:34Z"
+    observedGeneration: 1
+    status: "True"
+    type: Initialized
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-29T16:33:35Z"
+    observedGeneration: 1
+    status: "True"
+    type: Ready
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-29T16:33:35Z"
+    observedGeneration: 1
+    status: "True"
+    type: ContainersReady
+  - lastProbeTime: null
+    lastTransitionTime: "2026-09-29T16:33:34Z"
+    observedGeneration: 1
+    status: "True"
+    type: PodScheduled
+  containerStatuses:
+  - containerID: containerd://336c346144ad41ba66018a6f066785fb7de0dd9ef26ce7b6c3b5fc2af9f99920
+    image: docker.io/library/cloud-k8s-security-lab:hardened
+    imageID: docker.io/library/import-2026-09-29@sha256:e0a31289ed140e056ec0c906f90300a8f917be779379bc6d0f9234457f8c6551
+    lastState: {}
+    name: app
+    ready: true
+    resources: {}
+    restartCount: 0
+    started: true
+    state:
+      running:
+        startedAt: "2026-09-29T16:33:35Z"
+    user:
+      linux:
+        gid: 999
+        supplementalGroups:
+        - 999
+        uid: 999
+    volumeMounts:
+    - mountPath: /var/run/secrets/kubernetes.io/serviceaccount
+      name: kube-api-access-92ddp
+      readOnly: true
+      recursiveReadOnly: Disabled
+  hostIP: 172.20.0.2
+  hostIPs:
+  - ip: 172.20.0.2
+  observedGeneration: 1
+  phase: Running
+  podIP: 10.244.0.6
+  podIPs:
+  - ip: 10.244.0.6
+  qosClass: BestEffort
+  resources: {}
+  startTime: "2026-09-29T16:33:34Z"

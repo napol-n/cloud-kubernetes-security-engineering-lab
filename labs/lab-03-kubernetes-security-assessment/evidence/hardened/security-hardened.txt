@@ -1,0 +1,46 @@
+=== Target ===
+Context=kind-cloud-k8s-security
+Pod=cloud-k8s-security-app-65f544cf9d-q9ltv
+
+=== Runtime Identity ===
+uid=999(appuser) gid=999(appgroup) groups=999(appgroup)
+
+=== Kubernetes Security Configuration ===
+RunAsNonRoot=true
+RunAsUser=999
+RunAsGroup=999
+AllowPrivilegeEscalation=false
+ReadOnlyRootFilesystem=true
+SeccompProfile=RuntimeDefault
+AutomountServiceAccountToken=false
+
+=== Runtime Kernel Security State ===
+CapInh:	0000000000000000
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	0000000000000000
+CapAmb:	0000000000000000
+NoNewPrivs:	1
+Seccomp:	2
+Seccomp_filters:	1
+
+=== Resource Controls ===
+CPURequest=50m
+MemoryRequest=32Mi
+CPULimit=500m
+MemoryLimit=128Mi
+
+=== Service Account Token Retest ===
+RESULT=PASS: ServiceAccountToken=absent
+
+=== Read-only Filesystem Retest ===
+sh: 1: cannot create /tmp/lab03-retest: Read-only file system
+command terminated with exit code 2
+RESULT=PASS: write blocked
+
+=== Application Health ===
+{"status": "healthy"}
+
+=== Pod Status ===
+Ready=true
+Restarts=0

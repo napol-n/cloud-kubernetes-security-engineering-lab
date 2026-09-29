@@ -1,0 +1,4 @@
+=== Runtime Identity ===
+uid=999(appuser) gid=999(appgroup) groups=999(appgroup)
+
+=== Process ===
