@@ -21,7 +21,7 @@ Hands-on security engineering project focused on container security, Kubernetes 
 | 02 | Kubernetes Deployment | ✅ Completed |
 | 03 | Kubernetes Security Assessment | ✅ Completed |
 | 04 | Terraform / IaC Security | ✅ Completed |
-| 05 | Container Vulnerability Management | Planned |
+| 05 | Container Vulnerability Management | ✅ Completed  |
 | 06 | Secure CI/CD Pipeline | Planned |
 | 07 | Kubernetes RBAC & Least Privilege | Planned |
 | 08 | Workload & Network Hardening | Planned |
