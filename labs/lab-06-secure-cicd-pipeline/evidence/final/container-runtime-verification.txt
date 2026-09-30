@@ -1,0 +1,5 @@
+=== CI Image Runtime Identity ===
+uid=999(appuser) gid=999(appgroup) groups=999(appgroup)
+
+=== pip Presence Check ===
+RESULT=PASS: pip absent

@@ -1,0 +1,98 @@
+name: Security CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  repository-checks:
+    name: Repository Checks
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Show build context
+        run: |
+          echo "Commit: $GITHUB_SHA"
+          echo "Ref: $GITHUB_REF"
+          echo "Event: $GITHUB_EVENT_NAME"
+          echo
+          echo "Repository files:"
+          find . -maxdepth 2 -type f -print | sort
+
+  terraform-security:
+    name: Terraform Security
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: labs/lab-04-terraform-iac-security/terraform/hardened
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Terraform
+        uses: hashicorp/setup-terraform@v3
+        with:
+          terraform_version: "1.16.0"
+
+      - name: Terraform Init
+        run: terraform init -backend=false
+
+      - name: Terraform Format Check
+        run: terraform fmt -check
+
+      - name: Terraform Validate
+        run: terraform validate
+
+      - name: Trivy IaC Scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          scan-type: config
+          scan-ref: labs/lab-04-terraform-iac-security/terraform/hardened
+          severity: CRITICAL,HIGH,MEDIUM,LOW
+          exit-code: "0"
+          format: table
+
+  container-security:
+    name: Container Security
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Build hardened container image
+        run: |
+          docker build \
+            --pull \
+            -f app/Dockerfile.lab05-remediated \
+            -t cloud-k8s-security-lab:ci \
+            app/
+
+      - name: Verify runtime user
+        run: |
+          docker run --rm \
+            --entrypoint id \
+            cloud-k8s-security-lab:ci
+
+      - name: Trivy vulnerability scan
+        uses: aquasecurity/trivy-action@master
+        with:
+          image-ref: cloud-k8s-security-lab:ci
+          scan-type: image
+          scanners: vuln
+          severity: CRITICAL,HIGH,MEDIUM,LOW
+          ignore-unfixed: true
+          exit-code: "1"
+          format: table
