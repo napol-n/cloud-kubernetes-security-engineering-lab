@@ -1,0 +1,60 @@
+2026-09-30T15:01:45+07:00	INFO	[misconfig] Misconfiguration scanning is enabled
+2026-09-30T15:01:45+07:00	INFO	[checks-client] Using existing checks from cache	path="/Users/napol2/Library/Caches/trivy/policy/content"
+2026-09-30T15:01:45+07:00	INFO	[terraform scanner] Scanning root module	file_path="."
+2026-09-30T15:01:45+07:00	INFO	Detected config files	num=2
+
+Report Summary
+
+┌─────────┬───────────┬───────────────────┐
+│ Target  │   Type    │ Misconfigurations │
+├─────────┼───────────┼───────────────────┤
+│ .       │ terraform │         0         │
+├─────────┼───────────┼───────────────────┤
+│ main.tf │ terraform │         2         │
+└─────────┴───────────┴───────────────────┘
+Legend:
+- '-': Not scanned
+- '0': Clean (no security findings detected)
+
+
+main.tf (terraform)
+===================
+Tests: 2 (SUCCESSES: 0, FAILURES: 2)
+Failures: 2 (UNKNOWN: 0, LOW: 1, MEDIUM: 0, HIGH: 1, CRITICAL: 0)
+
+AWS-0089 (LOW): Bucket has logging disabled
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+Ensures S3 bucket logging is enabled for S3 buckets
+
+See https://avd.aquasec.com/misconfig/aws-0089
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ main.tf:54-56
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  54 ┌ resource "aws_s3_bucket" "access_logs" {
+  55 │   bucket = "cloud-k8s-security-lab-access-logs-example"
+  56 └ }
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
+AWS-0132 (HIGH): Bucket does not encrypt data with a customer managed key.
+══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════
+Encryption using AWS keys provides protection for your S3 buckets. To gain greater control over encryption, such as key rotation, access policies, and auditability, use customer managed keys (CMKs) with SSE-KMS.
+Note that SSE-KMS is not supported for S3 server access logging destination buckets; in such cases, use SSE-S3 instead.
+
+
+See https://avd.aquasec.com/misconfig/aws-0132
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+ main.tf:75-83
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+  75 ┌ resource "aws_s3_bucket_server_side_encryption_configuration" "access_logs" {
+  76 │   bucket = aws_s3_bucket.access_logs.id
+  77 │ 
+  78 │   rule {
+  79 │     apply_server_side_encryption_by_default {
+  80 │       sse_algorithm = "AES256"
+  81 │     }
+  82 │   }
+  83 └ }
+──────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────────
+
+
