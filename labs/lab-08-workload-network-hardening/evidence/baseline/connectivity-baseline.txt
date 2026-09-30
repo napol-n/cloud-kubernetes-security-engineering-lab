@@ -1,0 +1,17 @@
+=== Lab 08 Network Security Baseline ===
+
+=== Workloads ===
+NAME                  READY   STATUS    RESTARTS   AGE   IP           NODE                               NOMINATED NODE   READINESS GATES
+authorized-client     1/1     Running   0          62s   10.244.0.7   cloud-k8s-security-control-plane   <none>           <none>
+backend               1/1     Running   0          62s   10.244.0.6   cloud-k8s-security-control-plane   <none>           <none>
+unauthorized-client   1/1     Running   0          62s   10.244.0.8   cloud-k8s-security-control-plane   <none>           <none>
+
+=== Services ===
+NAME      TYPE        CLUSTER-IP     EXTERNAL-IP   PORT(S)   AGE
+backend   ClusterIP   10.96.31.250   <none>        80/TCP    62s
+
+=== NetworkPolicies ===
+
+=== Connectivity Tests ===
+authorized-client -> backend: HTTP 200
+unauthorized-client -> backend: HTTP 200

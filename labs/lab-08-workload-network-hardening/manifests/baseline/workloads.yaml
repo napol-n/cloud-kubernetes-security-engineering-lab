@@ -1,0 +1,56 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: lab08
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: backend
+  namespace: lab08
+  labels:
+    app: backend
+spec:
+  containers:
+    - name: backend
+      image: nginx:alpine
+      ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: lab08
+spec:
+  selector:
+    app: backend
+  ports:
+    - port: 80
+      targetPort: 80
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: authorized-client
+  namespace: lab08
+  labels:
+    access: authorized
+spec:
+  containers:
+    - name: client
+      image: curlimages/curl:latest
+      command: ["sleep", "3600"]
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: unauthorized-client
+  namespace: lab08
+  labels:
+    access: unauthorized
+spec:
+  containers:
+    - name: client
+      image: curlimages/curl:latest
+      command: ["sleep", "3600"]

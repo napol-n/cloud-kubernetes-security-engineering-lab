@@ -1,0 +1,12 @@
+=== Lab 08 NetworkPolicy Final Retest ===
+
+=== NetworkPolicy ===
+NAME              POD-SELECTOR   AGE
+backend-ingress   app=backend    59s
+
+=== Authorized Path ===
+authorized-client -> backend: HTTP 200
+
+=== Unauthorized Path ===
+unauthorized-client -> backend: HTTP 000
+CurlExitCode=28
