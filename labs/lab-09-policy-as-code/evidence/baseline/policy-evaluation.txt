@@ -1,0 +1,23 @@
+=== Lab 09 Policy-as-Code Baseline ===
+
+Target:
+labs/lab-02-kubernetes-deployment/manifests/deployment.yaml
+
+Conftest: 0.62.0
+OPA: 1.6.0
+
+=== Conftest Evaluation ===
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - Deployment must set automountServiceAccountToken=false
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - Deployment must set pod securityContext.seccompProfile.type=RuntimeDefault
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - container "app" must define CPU limits
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - container "app" must define CPU requests
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - container "app" must define memory limits
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - container "app" must define memory requests
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - container "app" must drop ALL Linux capabilities
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - container "app" must set allowPrivilegeEscalation=false
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - container "app" must set readOnlyRootFilesystem=true
+FAIL - labs/lab-02-kubernetes-deployment/manifests/deployment.yaml - main - container "app" must set securityContext.runAsNonRoot=true
+
+10 tests, 0 passed, 0 warnings, 10 failures, 0 exceptions
+
+ConftestExitCode=1

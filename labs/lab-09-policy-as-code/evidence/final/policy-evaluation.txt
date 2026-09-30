@@ -1,0 +1,13 @@
+=== Lab 09 Policy-as-Code Final Retest ===
+
+Target:
+labs/lab-03-kubernetes-security-assessment/manifests/deployment-hardened.yaml
+
+Conftest: 0.62.0
+OPA: 1.6.0
+
+=== Conftest Evaluation ===
+
+10 tests, 10 passed, 0 warnings, 0 failures, 0 exceptions
+
+ConftestExitCode=0

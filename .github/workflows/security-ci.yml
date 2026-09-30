@@ -96,3 +96,30 @@ jobs:
           ignore-unfixed: true
           exit-code: "1"
           format: table
+
+  policy-as-code:
+    name: Policy as Code
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Conftest
+        run: |
+          CONFTEST_VERSION="0.62.0"
+
+          curl -fsSL \
+            "https://github.com/open-policy-agent/conftest/releases/download/v${CONFTEST_VERSION}/conftest_${CONFTEST_VERSION}_Linux_x86_64.tar.gz" \
+            -o conftest.tar.gz
+
+          tar xzf conftest.tar.gz
+          sudo mv conftest /usr/local/bin/conftest
+
+          conftest --version
+
+      - name: Enforce Kubernetes security policies
+        run: |
+          conftest test \
+            labs/lab-03-kubernetes-security-assessment/manifests/deployment-hardened.yaml \
+            --policy labs/lab-09-policy-as-code/policies
