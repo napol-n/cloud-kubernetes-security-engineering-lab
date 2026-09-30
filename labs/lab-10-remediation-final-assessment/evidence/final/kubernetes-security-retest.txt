@@ -1,0 +1,15 @@
+=== Lab 10 Kubernetes Security Retest ===
+
+=== Deployment Security Configuration ===
+automountServiceAccountToken=false
+seccompProfile=RuntimeDefault
+runAsNonRoot=true
+allowPrivilegeEscalation=false
+readOnlyRootFilesystem=true
+capabilities.drop=["ALL"]
+
+=== Resource Controls ===
+requests.cpu=50m
+requests.memory=32Mi
+limits.cpu=500m
+limits.memory=128Mi

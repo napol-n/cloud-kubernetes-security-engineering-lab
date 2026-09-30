@@ -1,0 +1,13 @@
+=== Lab 10 Policy Regression Test ===
+
+Conftest: dev
+OPA: 1.21.0
+
+
+[32m10 tests, 10 passed, 0 warnings, 0 failures, 0 exceptions[0m
+
+ConftestExitCode=0
+
+Saving session...
+...saving history...truncating history files...
+...completed.

@@ -1,0 +1,13 @@
+=== Lab 10 Network Segmentation Regression Test ===
+
+=== NetworkPolicy ===
+NAME              POD-SELECTOR   AGE
+backend-ingress   app=backend    95m
+
+=== Authorized Path ===
+authorized-client -> backend: HTTP 200
+
+=== Unauthorized Path ===
+curl: (28) Connection timed out after 3004 milliseconds
+unauthorized-client -> backend: HTTP 000
+CurlExitCode=28

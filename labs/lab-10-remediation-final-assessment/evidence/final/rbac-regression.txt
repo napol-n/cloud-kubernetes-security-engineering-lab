@@ -1,0 +1,16 @@
+=== Lab 10 RBAC Regression Test ===
+
+Identity: system:serviceaccount:default:lab07-app-sa
+
+=== Application Authorization ===
+list pods: no
+delete pods: no
+get secrets: no
+list secrets: no
+
+=== Negative Controls ===
+delete nodes: no
+get kube-system secrets: no
+
+=== ServiceAccount Token Configuration ===
+automountServiceAccountToken=false

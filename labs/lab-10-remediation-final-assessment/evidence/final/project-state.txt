@@ -1,0 +1,28 @@
+=== Lab 10 Final Project State ===
+
+=== Git ===
+?? labs/lab-10-remediation-final-assessment/
+518adb3 lab09: enforce Kubernetes security policy as code
+
+=== Kubernetes Node ===
+NAME                               STATUS   ROLES           AGE   VERSION
+cloud-k8s-security-control-plane   Ready    control-plane   25h   v1.37.0
+
+=== Application Deployment ===
+NAME                     READY   UP-TO-DATE   AVAILABLE   AGE
+cloud-k8s-security-app   1/1     1            1           24h
+
+=== Application Pods ===
+NAME                                      READY   STATUS    RESTARTS        AGE   IP           NODE                               NOMINATED NODE   READINESS GATES
+cloud-k8s-security-app-65f544cf9d-q9ltv   1/1     Running   2 (4h59m ago)   24h   10.244.0.2   cloud-k8s-security-control-plane   <none>           <none>
+
+=== Network Policies ===
+NAMESPACE   NAME              POD-SELECTOR   AGE
+lab08       backend-ingress   app=backend    93m
+
+=== Docker Runtime ===
+NAMES                              IMAGE                                STATUS
+cloud-k8s-lab05-final              cloud-k8s-security-lab:lab05-final   Up 4 hours (healthy)
+cloud-k8s-security-control-plane   kindest/node:v1.37.0                 Up 5 hours
+cloud-k8s-hardened                 cloud-k8s-security-lab:hardened      Up 5 hours (healthy)
+cloud-k8s-baseline                 fe4948640031                         Up 5 hours
