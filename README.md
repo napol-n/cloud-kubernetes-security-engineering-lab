@@ -25,7 +25,7 @@ Hands-on security engineering project focused on container security, Kubernetes 
 | 06 | Secure CI/CD Pipeline | ✅ Completed |
 | 07 | Kubernetes RBAC & Least Privilege | ✅ Completed  |
 | 08 | Workload & Network Hardening | ✅ Completed |
-| 09 | Policy as Code | Planned |
+| 09 | Policy as Code | ✅ Completed |
 | 10 | Remediation & Final Assessment | Planned |
 
 ## Environment
